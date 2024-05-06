@@ -1,6 +1,12 @@
+export const UPDATE_FILTERS = 'UPDATE_FILTERS';
 export const FETCH_JOBS_REQUEST = 'FETCH_JOBS_REQUEST';
 export const FETCH_JOBS_SUCCESS = 'FETCH_JOBS_SUCCESS';
 export const FETCH_JOBS_FAILURE = 'FETCH_JOBS_FAILURE';
+
+export const updateFilters = (filters) => ({
+  type: UPDATE_FILTERS,
+  payload: filters,
+});
 
 export const fetchJobsRequest = () => ({
   type: FETCH_JOBS_REQUEST

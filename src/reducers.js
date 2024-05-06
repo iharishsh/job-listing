@@ -1,12 +1,38 @@
-import { FETCH_JOBS_SUCCESS, FETCH_JOBS_REQUEST, FETCH_JOBS_FAILURE } from './actions';
+import { combineReducers } from 'redux';
+import {
+  UPDATE_FILTERS,
+  FETCH_JOBS_REQUEST,
+  FETCH_JOBS_SUCCESS,
+  FETCH_JOBS_FAILURE,
+} from './actions';
 
-const initialState = {
+const initialFiltersState = {
+  remote: false,
+  location: '',
+  techStack: '',
+  minBasePay: '',
+  companyName: '',
+};
+
+const filtersReducer = (state = initialFiltersState, action) => {
+  switch (action.type) {
+    case UPDATE_FILTERS:
+      return {
+        ...state,
+        ...action.payload,
+      };
+    default:
+      return state;
+  }
+};
+
+const initialJobsState = {
   jobs: [],
   loading: false,
   error: null,
 };
 
-const jobsReducer = (state = initialState, action) => {
+const jobsReducer = (state = initialJobsState, action) => {
   switch (action.type) {
     case FETCH_JOBS_REQUEST:
       return {
@@ -31,4 +57,7 @@ const jobsReducer = (state = initialState, action) => {
   }
 };
 
-export default jobsReducer;
+export default combineReducers({
+  filters: filtersReducer,
+  jobs: jobsReducer,
+});
