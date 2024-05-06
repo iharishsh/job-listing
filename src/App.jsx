@@ -24,8 +24,14 @@ function App() {
     if (filters.location && job.location.toLowerCase() !== filters.location.toLowerCase()) {
       return false; 
     }
+    if (filters.role && !job.jobRole.toLowerCase().includes(filters.role.toLowerCase())) {
+      return false; 
+    }
     if (filters.techStack && !job.jobRole.toLowerCase().includes(filters.techStack.toLowerCase())) {
       return false; 
+    }
+    if (filters.experience && job.minExp < parseInt(filters.experience)) {
+      return false;
     }
     if (filters.minBasePay && job.minJdSalary < parseInt(filters.minBasePay)) {
       return false;
